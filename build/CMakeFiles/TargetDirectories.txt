@@ -1,0 +1,3 @@
+/home/hedmana/projects/SFML_prototype/build/CMakeFiles/SFML_demo.dir
+/home/hedmana/projects/SFML_prototype/build/CMakeFiles/edit_cache.dir
+/home/hedmana/projects/SFML_prototype/build/CMakeFiles/rebuild_cache.dir

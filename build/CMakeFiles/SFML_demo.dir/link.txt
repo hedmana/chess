@@ -1,0 +1,1 @@
+/usr/bin/c++ -g CMakeFiles/SFML_demo.dir/src/main.cpp.o -o ../SFML_demo  -Wl,-rpath,/home/hedmana/projects/SFML_prototype/libs/SFML-2.5.1/lib ../libs/SFML-2.5.1/lib/libsfml-audio.so.2.5.1 ../libs/SFML-2.5.1/lib/libsfml-graphics.so.2.5.1 ../libs/SFML-2.5.1/lib/libsfml-window.so.2.5.1 ../libs/SFML-2.5.1/lib/libsfml-system.so.2.5.1 
