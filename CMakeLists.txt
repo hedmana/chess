@@ -27,7 +27,7 @@ message(STATUS "SRC directory source code files: \n\t-- HEADERS: ${SOURCES_H}${S
 add_executable(SFML_demo)
 
 set(EXECUTABLE_OUTPUT_PATH ${CMAKE_SOURCE_DIR})
-set (SFML_DIR /home/hedmana/projects/SFML_prototype/libs/SFML-2.5.1/lib/cmake/SFML)
+set (SFML_DIR ${CMAKE_CURRENT_SOURCE_DIR}/libs/SFML-2.5.1/lib/cmake/SFML)
 
 find_package(SFML COMPONENTS audio graphics system window)
 
