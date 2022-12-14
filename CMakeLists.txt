@@ -16,9 +16,9 @@ file(GLOB SOURCES_C "src/*.c")
 # Add all .cpp, - files under src/ directory
 file(GLOB SOURCES_CPP "src/*.cpp")
 # Add all .hpp, - files under src/ directory
-file(GLOB SOURCES_HPP "src/*.hpp")
+file(GLOB SOURCES_HPP "header_files/*.hpp")
 # Add all .h, - files under src/ directory
-file(GLOB SOURCES_H "src/*.h")
+file(GLOB SOURCES_H "header_files/*.h")
 set(SOURCES ${SOURCES_C} ${SOURCES_CPP} ${SOURCES_H} ${SOURCES_HPP})
 message(STATUS "SRC directory source code files: \n\t-- HEADERS: ${SOURCES_H}${SOURCES_HPP}\n\t-- C SOURCES: ${SOURCES_C}\n\t-- CPP SOURCE:${SOURCES_CPP}\n\t-- ALL:${SOURCES}")
 

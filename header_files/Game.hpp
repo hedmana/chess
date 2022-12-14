@@ -1,15 +1,7 @@
 #ifndef __GAME_H__
 #define __GAME_H__
 
-#include <iostream>
-#include <ctime>
-#include <cstdlib>
-
-#include <SFML/Graphics.hpp>
-#include <SFML/Window.hpp>
-#include <SFML/System.hpp>
-#include <SFML/Audio.hpp>
-#include <SFML/Network.hpp>
+#include "GameState.hpp"
 
 class Game {
 public:
@@ -17,18 +9,26 @@ public:
     Game();
     virtual ~Game();
 
-    // functions
+    // public functions
     void run();
     void update();
+    void updateDt();
     void render();
     void updateSFMLEvents();
 private:
     // initialization
     void initWindow();
+    void initStates();
 
     // variables
     sf::RenderWindow* window_;
     sf::Event event_;
+    
+    /* delta time variable to prevent frame rate dependency in game */
+    float dt_;
+    sf::Clock dtClock_;
+
+    std::stack<State*> states_;
 };
 
 #endif // __GAME_H__
