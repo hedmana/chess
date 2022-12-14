@@ -5,30 +5,28 @@
 
 class Game {
 public:
-    // constructor & destructor
+    // CONSTRUCTOR & DESTRUCTOR
     Game();
     virtual ~Game();
 
-    // public functions
+    // PUBLIC FUNCTIONS 
     void run();
     void update();
     void updateDt();
     void render();
     void updateSFMLEvents();
 private:
-    // initialization
+    // INITIALIZATION
     void initWindow();
     void initStates();
 
-    // variables
+    // VARIABLES
     sf::RenderWindow* window_;
     sf::Event event_;
-    
-    /* delta time variable to prevent frame rate dependency in game */
+    std::stack<State*> states_;
+    /* delta time variables to prevent frame rate dependency in game */
     float dt_;
     sf::Clock dtClock_;
-
-    std::stack<State*> states_;
 };
 
 #endif // __GAME_H__
