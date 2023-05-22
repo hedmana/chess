@@ -1,2 +1,6 @@
-# SFML_prototype
-Playing around with the SFML library
+# CHESS BOARD
+
+## Build instructions 
+```
+sudo apt install build-essential
+```
