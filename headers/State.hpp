@@ -8,20 +8,20 @@ namespace Engine
     // PARENT CLASS FOR IMPLEMENTING GAME STATES
     class State
     {
-        public:
-            // Constructor and destructor:
-            State(){};
-            virtual ~State(){};
+    public:
+        // Constructor and destructor:
+        State(){};
+        virtual ~State(){};
 
-            // Pure virtual methods:
-            virtual void Init() = 0;
-            virtual void ProcessInput() = 0;
-            virtual void Update(sf::Time deltaTime) = 0;
-            virtual void Draw() = 0; 
+        // Pure virtual functions:
+        virtual void init() = 0;
+        virtual void processInput() = 0;
+        virtual void update(sf::Time deltaTime) = 0;
+        virtual void draw() = 0; 
 
-            // Virtual methods:
-            virtual void Pause(){};
-            virtual void Start(){};
+        // Virtual functions:
+        virtual void pause(){};
+        virtual void start(){};
     };
 }
 

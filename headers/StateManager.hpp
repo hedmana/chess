@@ -13,11 +13,23 @@ namespace Engine
 class StateManager
 {
 public:
-    StateManager(){}
-    ~StateManager(){}
+    // Constructor and destructor
+    StateManager();
+    ~StateManager();
 
-    void Hello();
+    // Member functions
+    void add(std::unique_ptr<State> to_add, bool replace = false);
+    void popCurrent();
+    void processStateChange();
+    std::unique_ptr<State>& getCurrent();
+
 private:
+    std::stack<std::unique_ptr<State>> state_stack_;
+    std::unique_ptr<State> new_state_;
+
+    bool add_;
+    bool replace_;
+    bool remove_;
 };
 }
 
