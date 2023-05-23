@@ -1,12 +1,17 @@
-REQUIRED_PKG="build-essential"
+#!/bin/sh
+REQUIRED_PKG="build-essential cmake"
 PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $REQUIRED_PKG|grep "install ok installed")
 echo Checking for $REQUIRED_PKG: $PKG_OK
 if [ "" = "$PKG_OK" ]; then
   echo "No $REQUIRED_PKG. Setting up $REQUIRED_PKG."
-  sudo apt-get --yes install $REQUIRED_PKG
+  sudo apt-get --yes install $REQUIRED_PKGS
 fi
 
-echo "LET'S PLAY CHESS!"
+mkdir build
+cmake CMakeLists.txt -B build
+cd build
+make
 
-g++ src/main.cpp -o chess -lsfml-graphics -lsfml-window -lsfml-system
-./chess
+echo "LET'S PLAY CHESS!"
+./CHESS
+cd ..

@@ -15,7 +15,7 @@ namespace Engine
 
             // Pure virtual methods:
             virtual void Init() = 0;
-            virtual void PollEvent() = 0;
+            virtual void ProcessInput() = 0;
             virtual void Update(sf::Time deltaTime) = 0;
             virtual void Draw() = 0; 
 
