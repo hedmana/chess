@@ -4,15 +4,13 @@ namespace Engine
 {
     AssetManager::AssetManager()
     {
-        
     }
     
     AssetManager::~AssetManager()
-    {
-        
+    {   
     }
     
-    void AssetManager::addTexture(int id, const std::string &file_path, bool repeated = false)
+    void AssetManager::addTexture(int id, const std::string &file_path, bool repeated)
     {
         auto texture = std::make_unique<sf::Texture>();
 

@@ -10,7 +10,7 @@ namespace Engine
     {
     }
 
-    void StateManager::add(std::unique_ptr<State> to_add, bool replace = false)
+    void StateManager::add(std::unique_ptr<State> to_add, bool replace)
     {
         add_ = true;
         new_state_ = std::move(to_add);

@@ -13,7 +13,7 @@ namespace Engine
 class AssetManager
 {
 public:
-    // COnstructor and destructor
+    // Constructor and destructor
     AssetManager();
     ~AssetManager();
 
@@ -24,10 +24,10 @@ public:
     const sf::Font &getFont(int id) const;
 
 private:
+    // Private variables
     std::map<int, std::unique_ptr<sf::Texture>> textures_;
     std::map<int, std::unique_ptr<sf::Font>> fonts_;
 };
-
 }
 
 #endif // __ASSET_MANAGER_H__

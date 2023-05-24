@@ -7,11 +7,17 @@ if [ "" = "$PKG_OK" ]; then
   sudo apt-get --yes install $REQUIRED_PKGS
 fi
 
-mkdir build
+DIR="${PWD}/build"
+if [ -d "$DIR" ]; then
+  echo "Rebuilding..."
+  rm -r build/*
+else
+  echo "New Build!"
+  mkdir build
+fi
+
 cmake CMakeLists.txt -B build
 cd build
 make
-
-echo "LET'S PLAY CHESS!"
-./CHESS
 cd ..
+

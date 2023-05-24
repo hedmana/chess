@@ -3,7 +3,6 @@
 
 #include <stack>
 #include <memory>
-#include <iostream>
 
 #include "State.hpp"
 
@@ -24,9 +23,9 @@ public:
     std::unique_ptr<State>& getCurrent();
 
 private:
+    // Private variables
     std::stack<std::unique_ptr<State>> state_stack_;
     std::unique_ptr<State> new_state_;
-
     bool add_;
     bool replace_;
     bool remove_;
