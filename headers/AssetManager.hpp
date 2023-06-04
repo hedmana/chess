@@ -12,6 +12,11 @@ namespace Engine
 {
 class AssetManager
 {
+private:
+    // Private variables
+    std::map<int, std::unique_ptr<sf::Texture>> textures_;
+    std::map<int, std::unique_ptr<sf::Font>> fonts_;
+    
 public:
     // Constructor and destructor
     AssetManager();
@@ -23,10 +28,6 @@ public:
     const sf::Texture &getTexture(int id) const;
     const sf::Font &getFont(int id) const;
 
-private:
-    // Private variables
-    std::map<int, std::unique_ptr<sf::Texture>> textures_;
-    std::map<int, std::unique_ptr<sf::Font>> fonts_;
 };
 }
 

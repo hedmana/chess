@@ -13,13 +13,13 @@ namespace Engine
         State(){};
         virtual ~State(){};
 
-        // Pure virtual functions:
+        // Pure virtual methods:
         virtual void init() = 0;
         virtual void processInput() = 0;
         virtual void update(sf::Time deltaTime) = 0;
         virtual void draw() = 0; 
 
-        // Virtual functions:
+        // Virtual methods:
         virtual void pause(){};
         virtual void start(){};
     };

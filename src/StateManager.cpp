@@ -51,6 +51,8 @@ namespace Engine
             }
 
             state_stack_.push(std::move(new_state_));
+            state_stack_.top()->init();
+            state_stack_.top()->start();
             add_ = false;
         }
     }

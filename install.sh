@@ -21,3 +21,4 @@ cd build
 make
 cd ..
 
+./chess
