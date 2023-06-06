@@ -2,6 +2,7 @@
 #define __MAIN_MENU_H__
 
 #include <memory>
+#include <iostream>
 
 #include <SFML/Graphics/Text.hpp>
 #include <SFML/Window/Event.hpp>

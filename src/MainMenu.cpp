@@ -96,6 +96,14 @@ void MainMenu::processInput()
 
 void MainMenu::update(sf::Time deltaTime)
 {
+    sf::FloatRect rectPlay((play_button_.getPosition().x - play_button_.getGlobalBounds().width / 2), play_button_.getPosition().y, 
+                            play_button_.getGlobalBounds().width, play_button_.getGlobalBounds().height);
+    sf::Vector2i mouse_pos = sf::Mouse::getPosition(*(context_->window_));
+
+    if (rectPlay.contains(context_->window_->mapPixelToCoords(mouse_pos))) {
+        std::cout << "PLAY!" << std::endl;
+    }
+    
     if (is_play_button_selected_) {
         play_button_.setFillColor(sf::Color::Yellow);
         quit_button_.setFillColor(sf::Color::White);
@@ -114,8 +122,8 @@ void MainMenu::update(sf::Time deltaTime)
     
     if (is_quit_button_pressed_)
     {
-        context_->window_->close();
         is_quit_button_pressed_ = false;
+        context_->window_->close();
     }
 }
 

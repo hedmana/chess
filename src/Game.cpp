@@ -2,7 +2,7 @@
 
 Game::Game() : context_(std::make_shared<GameContext>())
 {
-    context_->window_->create(sf::VideoMode(800, 800), "Chess");
+    context_->window_->create(sf::VideoMode(1000, 600), "Chess");
     context_->states_->add(std::make_unique<MainMenu>(context_));
 }
 
