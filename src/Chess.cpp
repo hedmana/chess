@@ -13,7 +13,7 @@ void Chess::init()
 {
     message_.setFont(context_->assets_->getFont(TITLE_FONT));
     message_.setCharacterSize(60);
-    message_.setString("PLAY CHESS");
+    message_.setString("LET'S PLAY CHESS!");
     message_.setOrigin(message_.getLocalBounds().width / 2, 
                         message_.getLocalBounds().height / 2);
     message_.setPosition(context_->window_->getSize().x / 2, 
@@ -47,7 +47,7 @@ void Chess::processInput()
     }
 }
 
-void Chess::update(sf::Time deltaTime)
+void Chess::update()
 {
     if (quit_) 
     {

@@ -9,7 +9,7 @@
 
 #include "State.hpp"
 #include "GameContext.hpp"
-#include "Game.hpp"
+#include "GameEngine.hpp"
 #include "Chess.hpp"
 
 // CHILD CLASS RESPONSIBLE FOR THE MAIN MENU. INHERITS FROM THE STATE CLASS.
@@ -33,7 +33,7 @@ public:
     // Pure virtual methods
     void init() override;
     void processInput() override;
-    void update(sf::Time deltaTime) override;
+    void update() override;
     void draw() override; 
 };
 

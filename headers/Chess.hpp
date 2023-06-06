@@ -5,7 +5,7 @@
 
 #include "State.hpp"
 #include "GameContext.hpp"
-#include "Game.hpp"
+#include "GameEngine.hpp"
 
 // CHILD CLASS RESPONSIBLE FOR THE CHESS BOARD ITSELF. INHERITS FROM THE STATE CLASS.
 class Chess : public Engine::State
@@ -23,7 +23,7 @@ public:
     // Pure virtual methods:
     virtual void init() override;
     virtual void processInput() override;
-    virtual void update(sf::Time deltaTime) override;
+    virtual void update() override;
     virtual void draw() override; 
 
     // Virtual methods:

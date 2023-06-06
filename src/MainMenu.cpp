@@ -15,7 +15,7 @@ void MainMenu::init()
     context_->assets_->addFont(MAIN_FONT, "assets/fonts/PlayfairDisplay-Regular.ttf");
     context_->assets_->addFont(TITLE_FONT, "assets/fonts/PlayfairDisplay-ExtraBold.ttf");
     
-    // Title
+    // Title text
     game_title_.setFont(context_->assets_->getFont(TITLE_FONT));
     game_title_.setCharacterSize(60);
     game_title_.setString("Chess Board");
@@ -44,66 +44,83 @@ void MainMenu::init()
 void MainMenu::processInput()
 {
     sf::Event event;
-    while (context_->window_->pollEvent(event))
-    {
-        if (event.type == sf::Event::Closed)
-        {
-            context_->window_->close();
-        } 
-        else if (event.type == sf::Event::KeyPressed)
-        {
-            switch (event.key.code)
+    sf::Vector2i mouse_pos = sf::Mouse::getPosition(*(context_->window_));
+    sf::FloatRect playRect((play_button_.getPosition().x - play_button_.getGlobalBounds().width / 2), 
+                            play_button_.getPosition().y, 
+                            play_button_.getGlobalBounds().width,
+                            play_button_.getGlobalBounds().height);
+    sf::FloatRect quitRect((quit_button_.getPosition().x - quit_button_.getGlobalBounds().width /2),
+                            quit_button_.getPosition().y,
+                            quit_button_.getGlobalBounds().width,
+                            quit_button_.getGlobalBounds().height);
+
+    while (context_->window_->pollEvent(event)) {
+        if (playRect.contains(context_->window_->mapPixelToCoords(mouse_pos))) {
+            is_play_button_selected_ = true;
+            is_quit_button_selected_ = false;
+
+            if (event.type == sf::Event::MouseButtonPressed) {
+                is_play_button_pressed_ = true;
+            }
+        }
+        else if (quitRect.contains(context_->window_->mapPixelToCoords(mouse_pos))) {
+            is_play_button_selected_ = false;
+            is_quit_button_selected_ = true;
+
+            if (event.type == sf::Event::MouseButtonPressed) {
+                is_quit_button_pressed_ = true;
+            }
+        }
+        else {
+            if (event.type == sf::Event::Closed)
             {
-                case sf::Keyboard::Up:
-                {   
-                    if (!is_play_button_selected_)
-                    {
-                        is_play_button_selected_ = true;
-                        is_quit_button_selected_ = false;
-                    }
-                    break;
-                }
-                case sf::Keyboard::Down:
+                context_->window_->close();
+            } 
+            else if (event.type == sf::Event::KeyPressed)
+            {
+                switch (event.key.code)
                 {
-                    if (!is_quit_button_selected_) {
-                        is_play_button_selected_ = false;
-                        is_quit_button_selected_ = true;
+                    case sf::Keyboard::Up:
+                    {   
+                        if (!is_play_button_selected_)
+                        {
+                            is_play_button_selected_ = true;
+                            is_quit_button_selected_ = false;
+                        }
+                        break;
                     }
-                    break;
-                }
-                case sf::Keyboard::Return:
-                {
-                    is_play_button_pressed_ = false;
-                    is_quit_button_pressed_ = false;
-                    if (is_play_button_selected_) 
+                    case sf::Keyboard::Down:
                     {
-                        is_play_button_pressed_ = true;
+                        if (!is_quit_button_selected_) {
+                            is_play_button_selected_ = false;
+                            is_quit_button_selected_ = true;
+                        }
+                        break;
                     }
-                    else 
+                    case sf::Keyboard::Return:
                     {
-                        is_quit_button_pressed_ = true;
+                        if (is_play_button_selected_) 
+                        {
+                            is_play_button_pressed_ = true;
+                        }
+                        else 
+                        {
+                            is_quit_button_pressed_ = true;
+                        }
+                        break;
                     }
-                    break;
-                }
-                default:
-                {
-                    break;
+                    default:
+                    {
+                        break;
+                    }
                 }
             }
         }
     }
 }
 
-void MainMenu::update(sf::Time deltaTime)
+void MainMenu::update()
 {
-    sf::FloatRect rectPlay((play_button_.getPosition().x - play_button_.getGlobalBounds().width / 2), play_button_.getPosition().y, 
-                            play_button_.getGlobalBounds().width, play_button_.getGlobalBounds().height);
-    sf::Vector2i mouse_pos = sf::Mouse::getPosition(*(context_->window_));
-
-    if (rectPlay.contains(context_->window_->mapPixelToCoords(mouse_pos))) {
-        std::cout << "PLAY!" << std::endl;
-    }
-    
     if (is_play_button_selected_) {
         play_button_.setFillColor(sf::Color::Yellow);
         quit_button_.setFillColor(sf::Color::White);
@@ -116,8 +133,8 @@ void MainMenu::update(sf::Time deltaTime)
 
     if (is_play_button_pressed_)
     {
-        context_->states_->add(std::make_unique<Chess>(context_));
         is_play_button_pressed_ = false;
+        context_->states_->add(std::make_unique<Chess>(context_));
     }
     
     if (is_quit_button_pressed_)

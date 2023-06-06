@@ -14,7 +14,7 @@ enum AssetID
     TITLE_FONT = 1
 };
 
-class Game
+class GameEngine
 {
 private:
     // Private variables    
@@ -23,8 +23,8 @@ private:
 
 public:
     // Constructor and destructor
-    Game();
-    ~Game();
+    GameEngine();
+    ~GameEngine();
 
     // Member functions
     void run();
