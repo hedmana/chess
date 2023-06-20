@@ -25,6 +25,7 @@ add_executable(${PROJECT_NAME} src/main.cpp)
 set(EXECUTABLE_OUTPUT_PATH ${CMAKE_SOURCE_DIR})
 
 # SFML configuration
+set(SFML_DIR "libraries/SFML-2.5.1/lib/cmake/SFML")
 find_package(SFML COMPONENTS audio graphics system window)
 target_link_libraries(${PROJECT_NAME} PRIVATE sfml-audio sfml-graphics sfml-system sfml-window)
 
