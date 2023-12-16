@@ -5,7 +5,7 @@ namespace Engine
     StateManager::StateManager() : add_(false), replace_(false), remove_(false)
     {
     }
-    
+
     StateManager::~StateManager()
     {
     }
@@ -17,19 +17,19 @@ namespace Engine
 
         replace_ = replace;
     }
-    
+
     void StateManager::popCurrent()
     {
         remove_ = true;
     }
-    
+
     void StateManager::processStateChange()
     {
-        if(remove_ && (!state_stack_.empty()))
+        if (remove_ && (!state_stack_.empty()))
         {
             state_stack_.pop();
 
-            if(!state_stack_.empty())
+            if (!state_stack_.empty())
             {
                 state_stack_.top()->start();
             }
@@ -37,15 +37,15 @@ namespace Engine
             remove_ = false;
         }
 
-        if(add_)
+        if (add_)
         {
-            if(replace_ && (!state_stack_.empty()))
+            if (replace_ && (!state_stack_.empty()))
             {
                 state_stack_.pop();
                 replace_ = false;
             }
 
-            if(!state_stack_.empty())
+            if (!state_stack_.empty())
             {
                 state_stack_.top()->pause();
             }
@@ -56,8 +56,8 @@ namespace Engine
             add_ = false;
         }
     }
-    
-    std::unique_ptr<State>& StateManager::getCurrent()
+
+    std::unique_ptr<State> &StateManager::getCurrent()
     {
         return state_stack_.top();
     }

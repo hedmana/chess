@@ -8,7 +8,6 @@
 #include "AssetManager.hpp"
 #include "StateManager.hpp"
 
-
 struct GameContext
 {
     std::unique_ptr<Engine::AssetManager> assets_;

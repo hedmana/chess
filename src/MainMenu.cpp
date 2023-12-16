@@ -1,118 +1,125 @@
 #include "MainMenu.hpp"
 
-MainMenu::MainMenu(std::shared_ptr<GameContext> &context) 
+MainMenu::MainMenu(std::shared_ptr<GameContext> &context)
     : context_(context), is_play_button_selected_(true), is_play_button_pressed_(false),
-    is_quit_button_selected_(false), is_quit_button_pressed_(false)
+      is_quit_button_selected_(false), is_quit_button_pressed_(false)
 {
 }
 
 MainMenu::~MainMenu()
-{   
+{
 }
 
 void MainMenu::init()
 {
     context_->assets_->addFont(MAIN_FONT, "assets/fonts/PlayfairDisplay-Regular.ttf");
     context_->assets_->addFont(TITLE_FONT, "assets/fonts/PlayfairDisplay-ExtraBold.ttf");
-    
+
     // Title text
     game_title_.setFont(context_->assets_->getFont(TITLE_FONT));
-    game_title_.setCharacterSize(60);
-    game_title_.setString("Chess Board");
-    game_title_.setOrigin(game_title_.getLocalBounds().width / 2, 
-                        game_title_.getLocalBounds().height / 2);
-    game_title_.setPosition(context_->window_->getSize().x / 2, 
-                        context_->window_->getSize().y / 3);
+    game_title_.setCharacterSize(100);
+    game_title_.setString("Chess");
+    game_title_.setOrigin(game_title_.getLocalBounds().width / 2,
+                          game_title_.getLocalBounds().height / 2);
+    game_title_.setPosition(context_->window_->getSize().x / 2,
+                            context_->window_->getSize().y / 3);
 
     // Play button
     play_button_.setFont(context_->assets_->getFont(MAIN_FONT));
     play_button_.setString("Play");
-    play_button_.setOrigin(play_button_.getLocalBounds().width / 2, 
-                        play_button_.getLocalBounds().height / 2);
-    play_button_.setPosition(context_->window_->getSize().x / 2, 
-                        (context_->window_->getSize().y / 3) + 100);
-    
+    play_button_.setOrigin(play_button_.getLocalBounds().width / 2,
+                           play_button_.getLocalBounds().height / 2);
+    play_button_.setPosition(context_->window_->getSize().x / 2,
+                             (context_->window_->getSize().y / 3) + 100);
+
     // Quit button
     quit_button_.setFont(context_->assets_->getFont(MAIN_FONT));
     quit_button_.setString("Quit");
-    quit_button_.setOrigin(quit_button_.getLocalBounds().width / 2, 
-                        quit_button_.getLocalBounds().height / 2);
-    quit_button_.setPosition(context_->window_->getSize().x / 2, 
-                        (context_->window_->getSize().y / 3) + 150);
+    quit_button_.setOrigin(quit_button_.getLocalBounds().width / 2,
+                           quit_button_.getLocalBounds().height / 2);
+    quit_button_.setPosition(context_->window_->getSize().x / 2,
+                             (context_->window_->getSize().y / 3) + 150);
 }
 
 void MainMenu::processInput()
 {
     sf::Event event;
     sf::Vector2i mouse_pos = sf::Mouse::getPosition(*(context_->window_));
-    sf::FloatRect playRect((play_button_.getPosition().x - play_button_.getGlobalBounds().width / 2), 
-                            play_button_.getPosition().y, 
-                            play_button_.getGlobalBounds().width,
-                            play_button_.getGlobalBounds().height);
-    sf::FloatRect quitRect((quit_button_.getPosition().x - quit_button_.getGlobalBounds().width /2),
-                            quit_button_.getPosition().y,
-                            quit_button_.getGlobalBounds().width,
-                            quit_button_.getGlobalBounds().height);
+    sf::FloatRect playRect((play_button_.getPosition().x - play_button_.getGlobalBounds().width / 2),
+                           play_button_.getPosition().y,
+                           play_button_.getGlobalBounds().width,
+                           play_button_.getGlobalBounds().height);
+    sf::FloatRect quitRect((quit_button_.getPosition().x - quit_button_.getGlobalBounds().width / 2),
+                           quit_button_.getPosition().y,
+                           quit_button_.getGlobalBounds().width,
+                           quit_button_.getGlobalBounds().height);
 
-    while (context_->window_->pollEvent(event)) {
-        if (playRect.contains(context_->window_->mapPixelToCoords(mouse_pos))) {
+    while (context_->window_->pollEvent(event))
+    {
+        if (playRect.contains(context_->window_->mapPixelToCoords(mouse_pos)))
+        {
             is_play_button_selected_ = true;
             is_quit_button_selected_ = false;
 
-            if (event.type == sf::Event::MouseButtonPressed) {
+            if (event.type == sf::Event::MouseButtonPressed)
+            {
                 is_play_button_pressed_ = true;
             }
         }
-        else if (quitRect.contains(context_->window_->mapPixelToCoords(mouse_pos))) {
+        else if (quitRect.contains(context_->window_->mapPixelToCoords(mouse_pos)))
+        {
             is_play_button_selected_ = false;
             is_quit_button_selected_ = true;
 
-            if (event.type == sf::Event::MouseButtonPressed) {
+            if (event.type == sf::Event::MouseButtonPressed)
+            {
                 is_quit_button_pressed_ = true;
             }
         }
-        else {
+        else
+        {
             if (event.type == sf::Event::Closed)
             {
                 context_->window_->close();
-            } 
+            }
             else if (event.type == sf::Event::KeyPressed)
             {
                 switch (event.key.code)
                 {
-                    case sf::Keyboard::Up:
-                    {   
-                        if (!is_play_button_selected_)
-                        {
-                            is_play_button_selected_ = true;
-                            is_quit_button_selected_ = false;
-                        }
-                        break;
-                    }
-                    case sf::Keyboard::Down:
+                case sf::Keyboard::Up:
+                {
+                    if (!is_play_button_selected_)
                     {
-                        if (!is_quit_button_selected_) {
-                            is_play_button_selected_ = false;
-                            is_quit_button_selected_ = true;
-                        }
-                        break;
+                        is_play_button_selected_ = true;
+                        is_quit_button_selected_ = false;
                     }
-                    case sf::Keyboard::Return:
+                    break;
+                }
+                case sf::Keyboard::Down:
+                {
+                    if (!is_quit_button_selected_)
                     {
-                        if (is_play_button_selected_) 
-                        {
-                            is_play_button_pressed_ = true;
-                        }
-                        else 
-                        {
-                            is_quit_button_pressed_ = true;
-                        }
-                        break;
+                        is_play_button_selected_ = false;
+                        is_quit_button_selected_ = true;
                     }
-                    default:
+                    break;
+                }
+                case sf::Keyboard::Return:
+                {
+                    if (is_play_button_selected_)
                     {
-                        break;
+                        is_play_button_pressed_ = true;
                     }
+                    else
+                    {
+                        is_quit_button_pressed_ = true;
+                    }
+                    break;
+                }
+                default:
+                {
+                    break;
+                }
                 }
             }
         }
@@ -121,11 +128,12 @@ void MainMenu::processInput()
 
 void MainMenu::update()
 {
-    if (is_play_button_selected_) {
+    if (is_play_button_selected_)
+    {
         play_button_.setFillColor(sf::Color::Yellow);
         quit_button_.setFillColor(sf::Color::White);
     }
-    else 
+    else
     {
         play_button_.setFillColor(sf::Color::White);
         quit_button_.setFillColor(sf::Color::Yellow);
@@ -136,7 +144,7 @@ void MainMenu::update()
         is_play_button_pressed_ = false;
         context_->states_->add(std::make_unique<Chess>(context_));
     }
-    
+
     if (is_quit_button_pressed_)
     {
         is_quit_button_pressed_ = false;
@@ -146,9 +154,9 @@ void MainMenu::update()
 
 void MainMenu::draw()
 {
-    context_->window_->clear(sf::Color(0,80,0));
+    context_->window_->clear(sf::Color(75, 0, 90));
     context_->window_->draw(game_title_);
     context_->window_->draw(play_button_);
     context_->window_->draw(quit_button_);
-    context_->window_->display();    
+    context_->window_->display();
 }

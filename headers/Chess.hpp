@@ -2,17 +2,28 @@
 #define __CHESS_H__
 
 #include <memory>
+#include <vector>
+
+#include <SFML/Graphics.hpp>
 
 #include "State.hpp"
 #include "GameContext.hpp"
 #include "GameEngine.hpp"
+#include "Tile.hpp"
+#include "Rook.hpp"
+#include "Knight.hpp"
+#include "Bishop.hpp"
+#include "Queen.hpp"
+#include "King.hpp"
+#include "Pawn.hpp"
 
-// CHILD CLASS RESPONSIBLE FOR THE CHESS BOARD ITSELF. INHERITS FROM THE STATE CLASS.
+// CHILD CLASS RESPONSIBLE FOR THE CHESS STATE. INHERITS FROM THE STATE CLASS.
 class Chess : public Engine::State
 {
 private:
     std::shared_ptr<GameContext> context_;
-    sf::Text message_;
+    std::vector<std::vector<Tile>> board_;
+    std::vector<std::unique_ptr<Piece>> pieces_;
 
     bool quit_ = false;
 
@@ -24,9 +35,8 @@ public:
     virtual void init() override;
     virtual void processInput() override;
     virtual void update() override;
-    virtual void draw() override; 
+    virtual void draw() override;
 
-    // Virtual methods:
     virtual void pause() override;
     virtual void start() override;
 };

@@ -8,9 +8,10 @@
 #include <SFML/Window/Event.hpp>
 
 #include "State.hpp"
+#include "Chess.hpp"
 #include "GameContext.hpp"
 #include "GameEngine.hpp"
-#include "Chess.hpp"
+#include "Enums.hpp"
 
 // CHILD CLASS RESPONSIBLE FOR THE MAIN MENU. INHERITS FROM THE STATE CLASS.
 class MainMenu : public Engine::State
@@ -34,7 +35,7 @@ public:
     void init() override;
     void processInput() override;
     void update() override;
-    void draw() override; 
+    void draw() override;
 };
 
 #endif // __MAIN_MENU_H__

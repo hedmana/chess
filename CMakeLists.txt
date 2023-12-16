@@ -7,6 +7,8 @@ set(CMAKE_CXX_STANDARD 17)
 # Build configuration
 set(CMAKE_BUILD_TYPE DEBUG)
 
+message(STATUS "Compiler: ${CMAKE_CXX_COMPILER_ID} ${CMAKE_CXX_COMPILER_VERSION}")
+
 # Cmake directories
 message(STATUS "CMake build directory: ${CMAKE_BINARY_DIR}")
 message(STATUS "CMake source directory: ${CMAKE_SOURCE_DIR}")
