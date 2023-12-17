@@ -40,4 +40,4 @@ So, after making sure all dependencies are installed, the program is run by exec
 
 in the project root directory.
 
-**NOTE!** If ure using WSL you'll have to setup an XServer to run a GUI application. Here's a quick guide on how to do it with VcXsrv: https://gist.github.com/djfdyuruiry/3150b9e5f3dadba89ea323df49ea7ab1.
+**NOTE!** If ure using WSL you'll have to setup an XServer to run a GUI application. Here's a quick guide on how to do just that with VcXsrv: https://gist.github.com/djfdyuruiry/3150b9e5f3dadba89ea323df49ea7ab1.
