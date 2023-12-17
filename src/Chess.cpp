@@ -80,8 +80,10 @@ void Chess::init()
 void Chess::checkPieces(sf::Vector2i mousePos)
 {
     std::pair<int, int> tilePos;
+    std::pair<int, int> piecePos;
+    int pieceColor;
 
-    if(!pieceSelected_)
+    if (!pieceSelected_)
     {
         for (auto &piece : pieces_)
         {
@@ -91,11 +93,24 @@ void Chess::checkPieces(sf::Vector2i mousePos)
             }
         }
         pieceSelected_ = true;
-    } else {
-        for (auto &piece : pieces_)
+    }
+    else
+    {
+        for (auto &selectedPiece : pieces_)
         {
-            if (piece->isSelected())
+            if (selectedPiece->isSelected())
             {
+                piecePos = selectedPiece->getBaseCoordinates();
+                for (auto &row : board_)
+                {
+                    for (auto &tile : row)
+                    {
+                        if (tile.getSprite().getGlobalBounds().contains(piecePos.first, piecePos.second))
+                        {
+                            tile.setOccupied(false);
+                        }
+                    }
+                }
                 for (auto &tile : board_)
                 {
                     for (auto &tile : tile)
@@ -104,11 +119,45 @@ void Chess::checkPieces(sf::Vector2i mousePos)
                         {
                             if (!tile.isOccupied())
                             {
-                                piece->setSelected(false);
+                                selectedPiece->setSelected(false);
                                 tilePos = tile.getPosition();
-                                piece->setCoordinates(tilePos.first + 50, tilePos.second + 50);
+                                selectedPiece->setCoordinates(tilePos.first + 50, tilePos.second + 50);
+                                selectedPiece->setBaseCoordinates(tilePos.first + 50, tilePos.second + 50);
                                 pieceSelected_ = false;
                                 tile.setOccupied(true);
+                            }
+                            else
+                            {
+                                pieceColor = selectedPiece->getColor();
+                                for (auto &piece : pieces_)
+                                {
+                                    if (!piece->isSelected())
+                                    {
+                                        if (piece->getSprite().getGlobalBounds().contains(context_->window_->mapPixelToCoords(mousePos)))
+                                        {
+                                            if (piece->getColor() != pieceColor) 
+                                            {
+                                                piece->setCaptured(true);
+                                                for (auto &row : board_)
+                                                {
+                                                    for (auto &tile : row)
+                                                    {
+                                                        piecePos = piece->getBaseCoordinates();
+                                                        if (tile.getSprite().getGlobalBounds().contains(piecePos.first, piecePos.second))
+                                                        {
+                                                            selectedPiece->setSelected(false);
+                                                            tilePos = tile.getPosition();
+                                                            selectedPiece->setCoordinates(tilePos.first + 50, tilePos.second + 50);
+                                                            selectedPiece->setBaseCoordinates(tilePos.first + 50, tilePos.second + 50);
+                                                            pieceSelected_ = false;
+                                                            tile.setOccupied(true);
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
                             }
                         }
                     }
@@ -150,9 +199,8 @@ void Chess::processInput()
         }
         case ::sf::Event::MouseButtonPressed:
         {
-            std::cout << mousePos.x << ", " << mousePos.y << std::endl;
             checkPieces(mousePos);
-            
+
             break;
         }
         default:
@@ -177,20 +225,24 @@ void Chess::draw()
     sf::Vector2i mousePos = sf::Mouse::getPosition(*(context_->window_));
     context_->window_->clear(sf::Color(75, 0, 90));
 
+    // Draw the board
     for (auto &row : board_)
     {
         for (auto &tile : row)
-        {
             context_->window_->draw(tile.getSprite());
-        }
     }
 
+    // Remove captured pieces
+    pieces_.erase(std::remove_if(pieces_.begin(), pieces_.end(), [](std::unique_ptr<Piece> &piece) { return(piece->isCaptured()); }), pieces_.end());
+
+    // Draw non-selected pieces
     for (auto &piece : pieces_)
     {
         if (!piece->isSelected())
             context_->window_->draw(piece->getSprite());
     }
 
+    // Draw selected piece
     for (auto &piece : pieces_)
     {
         if (piece->isSelected())
