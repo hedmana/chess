@@ -7,7 +7,7 @@ A chess board written in C++ where the GUI is implemented with the SFML library 
 - SFML-2.5.1 (included in the repo)
 
 ## Build instructions (Linux)
-The project is compiled using CMake. Included is a bash script that handles the build process. The install script includes the following:
+The project is compiled using CMake. Included is a bash script that handles the build process. The install script contains the following code:
 
 ```bash
 #!/bin/sh
