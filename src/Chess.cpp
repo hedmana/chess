@@ -90,9 +90,9 @@ void Chess::checkPieces(sf::Vector2i mousePos)
             if (piece->getSprite().getGlobalBounds().contains(context_->window_->mapPixelToCoords(mousePos)))
             {
                 piece->setSelected(true);
+                pieceSelected_ = true;
             }
         }
-        pieceSelected_ = true;
     }
     else
     {
@@ -135,7 +135,7 @@ void Chess::checkPieces(sf::Vector2i mousePos)
                                     {
                                         if (piece->getSprite().getGlobalBounds().contains(context_->window_->mapPixelToCoords(mousePos)))
                                         {
-                                            if (piece->getColor() != pieceColor) 
+                                            if (piece->getColor() != pieceColor)
                                             {
                                                 piece->setCaptured(true);
                                                 for (auto &row : board_)
@@ -233,7 +233,9 @@ void Chess::draw()
     }
 
     // Remove captured pieces
-    pieces_.erase(std::remove_if(pieces_.begin(), pieces_.end(), [](std::unique_ptr<Piece> &piece) { return(piece->isCaptured()); }), pieces_.end());
+    pieces_.erase(std::remove_if(pieces_.begin(), pieces_.end(), [](std::unique_ptr<Piece> &piece)
+                                 { return (piece->isCaptured()); }),
+                  pieces_.end());
 
     // Draw non-selected pieces
     for (auto &piece : pieces_)
