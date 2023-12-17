@@ -9,7 +9,7 @@ A chess board written in C++ where the GUI is implemented with the SFML library 
 ## Build instructions (Linux)
 The project is compiled using CMake. Included is a bash script that handles the build process. The install script includes the following:
 
-```{bash}
+```bash
 #!/bin/sh
 
 DIR="${PWD}/build"
@@ -37,4 +37,4 @@ So, to run the program, simply navigate to the project root folder and execute:
 ```
 ./install.sh
 ```
-If ure using WSL you'll have to setup an XServer to run a GUI application. Here's a quick guide on how to do it with VcXsrv: https://gist.github.com/djfdyuruiry/3150b9e5f3dadba89ea323df49ea7ab1.
+**NOTE!** If ure using WSL you'll have to setup an XServer to run a GUI application. Here's a quick guide on how to do it with VcXsrv: https://gist.github.com/djfdyuruiry/3150b9e5f3dadba89ea323df49ea7ab1.
