@@ -29,12 +29,15 @@ cd build
 make
 cd ..
 
-# Run the program
+# Execute the program
 ./chess
 ```
 
-So, to run the program, simply navigate to the project root folder and execute:
+So, after making sure all dependencies are installed, the program is run by executing:
 ```
 ./install.sh
 ```
+
+in the project root directory.
+
 **NOTE!** If ure using WSL you'll have to setup an XServer to run a GUI application. Here's a quick guide on how to do it with VcXsrv: https://gist.github.com/djfdyuruiry/3150b9e5f3dadba89ea323df49ea7ab1.
