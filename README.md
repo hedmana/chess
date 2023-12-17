@@ -2,7 +2,7 @@
 A chess board written in C++ where the GUI is implemented with the SFML library (https://www.sfml-dev.org/). I love playing chess and took this as an opportunity to combine my chess and CS knowledge. Hit me up if you are looking for an opponent :sunglasses:	
 
 ## Dependencies
-- CMake v3.13.4 --> 
+- CMake v3.13.4 &rarr;
 - Compiler: GNU v11.4.0
 - SFML-2.5.1 (included in the repo)
 
