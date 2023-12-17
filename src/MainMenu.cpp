@@ -61,9 +61,17 @@ void MainMenu::processInput()
             is_play_button_selected_ = true;
             is_quit_button_selected_ = false;
 
-            if (event.type == sf::Event::MouseButtonPressed)
+            switch (event.type)
+            {
+            case sf::Event::MouseButtonPressed:
             {
                 is_play_button_pressed_ = true;
+                break;
+            }
+            default:
+            {
+                break;
+            }
             }
         }
         else if (quitRect.contains(context_->window_->mapPixelToCoords(mouse_pos)))
@@ -71,18 +79,29 @@ void MainMenu::processInput()
             is_play_button_selected_ = false;
             is_quit_button_selected_ = true;
 
-            if (event.type == sf::Event::MouseButtonPressed)
+            switch (event.type)
+            {
+            case sf::Event::MouseButtonPressed:
             {
                 is_quit_button_pressed_ = true;
+                break;
+            }
+            default:
+            {
+                break;
+            }
             }
         }
         else
         {
-            if (event.type == sf::Event::Closed)
+            switch (event.type)
+            {
+            case sf::Event::Closed:
             {
                 context_->window_->close();
+                break;
             }
-            else if (event.type == sf::Event::KeyPressed)
+            case sf::Event::KeyPressed:
             {
                 switch (event.key.code)
                 {
@@ -121,6 +140,12 @@ void MainMenu::processInput()
                     break;
                 }
                 }
+                break;
+            }
+            default:
+            {
+                break;
+            }
             }
         }
     }

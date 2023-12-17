@@ -21,6 +21,8 @@
 class Chess : public Engine::State
 {
 private:
+    bool mouseClicked_;
+    bool pieceSelected_;
     std::shared_ptr<GameContext> context_;
     std::vector<std::vector<Tile>> board_;
     std::vector<std::unique_ptr<Piece>> pieces_;
@@ -30,6 +32,8 @@ private:
 public:
     Chess(std::shared_ptr<GameContext> &context);
     ~Chess();
+
+    void checkPieces(sf::Vector2i mousePos);
 
     // Pure virtual methods:
     virtual void init() override;
