@@ -21,7 +21,10 @@ private:
     sf::Text game_title_;
     sf::Text play_button_;
     sf::Text quit_button_;
-
+    sf::Texture texture1_;
+    sf::Texture texture2_;
+    sf::Sprite icon1_;
+    sf::Sprite icon2_;
     bool is_play_button_selected_;
     bool is_play_button_pressed_;
     bool is_quit_button_selected_;

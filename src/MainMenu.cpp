@@ -12,8 +12,8 @@ MainMenu::~MainMenu()
 
 void MainMenu::init()
 {
-    context_->assets_->addFont(MAIN_FONT, "assets/fonts/PlayfairDisplay-Regular.ttf");
-    context_->assets_->addFont(TITLE_FONT, "assets/fonts/PlayfairDisplay-ExtraBold.ttf");
+    context_->assets_->addFont(MAIN_FONT, "assets/fonts/Silkscreen-Regular.ttf");
+    context_->assets_->addFont(TITLE_FONT, "assets/fonts/Silkscreen-Bold.ttf");
 
     // Title text
     game_title_.setFont(context_->assets_->getFont(TITLE_FONT));
@@ -24,13 +24,28 @@ void MainMenu::init()
     game_title_.setPosition(context_->window_->getSize().x / 2,
                             context_->window_->getSize().y / 3);
 
+    // Icons
+    texture1_.loadFromFile("assets/sprites/king_w.png");
+    icon1_.setTexture(texture1_);
+    icon1_.setScale(300 / texture1_.getSize().x, 300 / texture1_.getSize().y);
+    icon1_.setOrigin(texture1_.getSize().x / 2, texture1_.getSize().y / 2);
+    icon1_.setPosition(context_->window_->getSize().x / 5, (context_->window_->getSize().y / 3) * 2);
+    icon1_.setRotation(350);
+
+    texture2_.loadFromFile("assets/sprites/queen_b.png");
+    icon2_.setTexture(texture2_);
+    icon2_.setScale(300 / texture2_.getSize().x, 300 / texture2_.getSize().y);
+    icon2_.setOrigin(texture2_.getSize().x / 2, texture2_.getSize().y / 2);
+    icon2_.setPosition((context_->window_->getSize().x / 5) * 4, (context_->window_->getSize().y / 3) * 2);
+    icon2_.setRotation(10);
+
     // Play button
     play_button_.setFont(context_->assets_->getFont(MAIN_FONT));
     play_button_.setString("Play");
     play_button_.setOrigin(play_button_.getLocalBounds().width / 2,
                            play_button_.getLocalBounds().height / 2);
     play_button_.setPosition(context_->window_->getSize().x / 2,
-                             (context_->window_->getSize().y / 3) + 100);
+                             (context_->window_->getSize().y / 3) + 150);
 
     // Quit button
     quit_button_.setFont(context_->assets_->getFont(MAIN_FONT));
@@ -38,7 +53,7 @@ void MainMenu::init()
     quit_button_.setOrigin(quit_button_.getLocalBounds().width / 2,
                            quit_button_.getLocalBounds().height / 2);
     quit_button_.setPosition(context_->window_->getSize().x / 2,
-                             (context_->window_->getSize().y / 3) + 150);
+                             (context_->window_->getSize().y / 3) + 220);
 }
 
 void MainMenu::processInput()
@@ -181,6 +196,8 @@ void MainMenu::draw()
 {
     context_->window_->clear(sf::Color(75, 0, 90));
     context_->window_->draw(game_title_);
+    context_->window_->draw(icon1_);
+    context_->window_->draw(icon2_);
     context_->window_->draw(play_button_);
     context_->window_->draw(quit_button_);
     context_->window_->display();

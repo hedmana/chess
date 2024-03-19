@@ -167,6 +167,14 @@ void Chess::checkPieces(sf::Vector2i mousePos)
     }
 }
 
+void Chess::checkButtons(sf::Vector2i mousePos)
+{
+    if (mainMenuButton_.getSprite().getGlobalBounds().contains(context_->window_->mapPixelToCoords(mousePos)))
+    {
+        quit_ = true;
+    }
+}
+
 void Chess::processInput()
 {
     sf::Event event;
@@ -185,7 +193,7 @@ void Chess::processInput()
         {
             switch (event.key.code)
             {
-            case ::sf::Keyboard::Enter:
+            case ::sf::Keyboard::BackSpace:
             {
                 quit_ = true;
                 break;
@@ -200,6 +208,7 @@ void Chess::processInput()
         case ::sf::Event::MouseButtonPressed:
         {
             checkPieces(mousePos);
+            checkButtons(mousePos);
 
             break;
         }
@@ -224,6 +233,12 @@ void Chess::draw()
 {
     sf::Vector2i mousePos = sf::Mouse::getPosition(*(context_->window_));
     context_->window_->clear(sf::Color(75, 0, 90));
+
+    // Draw the buttonsS
+    context_->window_->draw(mainMenuButton_.getSprite());
+    context_->window_->draw(mainMenuButton_.getText());
+    context_->window_->draw(resetBoardButton_.getSprite());
+    context_->window_->draw(resetBoardButton_.getText());
 
     // Draw the board
     for (auto &row : board_)
