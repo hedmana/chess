@@ -1,5 +1,5 @@
 # CHESS BOARD (WORK IN PROGRESS)
-A chess board written in C++ where the GUI is implemented with the SFML library (https://www.sfml-dev.org/). I love playing chess and took this as an opportunity to combine my chess and CS knowledge. Hit me up if you are looking for an opponent :sunglasses:
+A chess board written in C++ using the SFML library (https://www.sfml-dev.org/). I love playing chess and took this as an opportunity to combine my chess and CS knowledge. Hit me up if you are looking for an opponent :sunglasses:
 
 ![Chess demo](assets/gifs/chess.gif)
 
