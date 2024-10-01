@@ -77,6 +77,12 @@ void Chess::init()
     }
 }
 
+void Chess::resetBoard() {
+    pieces_.clear();
+    board_.clear();
+    init();
+}
+
 void Chess::checkPieces(sf::Vector2i mousePos)
 {
     std::pair<int, int> tilePos;
@@ -172,6 +178,10 @@ void Chess::checkButtons(sf::Vector2i mousePos)
     if (mainMenuButton_.getSprite().getGlobalBounds().contains(context_->window_->mapPixelToCoords(mousePos)))
     {
         quit_ = true;
+    }
+    if (resetBoardButton_.getSprite().getGlobalBounds().contains(context_->window_->mapPixelToCoords(mousePos)))
+    {
+        resetBoard();
     }
 }
 

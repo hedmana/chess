@@ -37,6 +37,7 @@ public:
     Chess(std::shared_ptr<GameContext> &context);
     ~Chess();
 
+    void resetBoard();
     void checkPieces(sf::Vector2i mousePos);
     void checkButtons(sf::Vector2i mousePos);
 
