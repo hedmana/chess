@@ -1,5 +1,6 @@
 # CHESS BOARD 
-A chess board written in C++ with the help of SFML (https://www.sfml-dev.org/). Hit me up if you are looking for an opponent :sunglasses:
+- Language: C++
+- GUI: SFML (https://www.sfml-dev.org/).
 
 ![Chess demo](assets/gifs/chess.gif)
 
@@ -9,7 +10,7 @@ A chess board written in C++ with the help of SFML (https://www.sfml-dev.org/). 
 - SFML-2.5.1 (included in the repo)
 
 ## Build instructions (Linux)
-The project is compiled using CMake. Included is a bash script that handles the build: 
+The project is compiled using CMake. Included is a bash script, ```install.sh```, that handles the build: 
 
 ```bash
 #!/bin/sh
@@ -35,9 +36,4 @@ cd ..
 ./chess
 ```
 
-So, after making sure all dependencies are installed, the game can be run by executing: 
-```
-./install.sh
-```
-
-**NOTE!** If ure using WSL you'll have to setup an XServer to run a GUI application. Here's a quick guide on how to do just that: https://learn.microsoft.com/en-us/windows/wsl/tutorials/gui-apps
+**NOTE!** If ure using WSL you'll have to setup an XServer to run a GUI application: https://learn.microsoft.com/en-us/windows/wsl/tutorials/gui-apps
