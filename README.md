@@ -1,5 +1,4 @@
 # CHESS BOARD 
-- Language: C++
 - GUI: SFML (https://www.sfml-dev.org/).
 
 ![Chess demo](assets/gifs/chess.gif)
